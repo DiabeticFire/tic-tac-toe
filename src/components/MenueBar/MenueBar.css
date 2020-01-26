@@ -1,0 +1,17 @@
+.menueBar {
+  width: 100vw;
+  height: 5vh;
+  background-color: #2b303a;
+  display: flex;
+  align-items: center;
+}
+
+.menueLink {
+  color: #92dce5;
+  padding: 0px 2vw;
+  text-decoration-line: none;
+}
+
+.menueTitle {
+  color: #92dce5;
+}
