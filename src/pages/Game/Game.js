@@ -56,15 +56,33 @@ class Game extends Component {
       <div className="game">
         <MenueBar />
         <div className="grid">
-          <Cell onPress={(e) => this.cellClicked("cell_1", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_2", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_3", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_4", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_5", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_6", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_7", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_8", e)} />
-          <Cell onPress={(e) => this.cellClicked("cell_9", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_1", e)}>
+            {this.state.grid.cell_1 === "human" ? "X" : this.state.grid.cell_1 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_2", e)}>
+            {this.state.grid.cell_2 === "human" ? "X" : this.state.grid.cell_2 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_3", e)}>
+            {this.state.grid.cell_3 === "human" ? "X" : this.state.grid.cell_3 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_4", e)}>
+            {this.state.grid.cell_4 === "human" ? "X" : this.state.grid.cell_4 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_5", e)}>
+            {this.state.grid.cell_5 === "human" ? "X" : this.state.grid.cell_5 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_6", e)}>
+            {this.state.grid.cell_6 === "human" ? "X" : this.state.grid.cell_6 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_7", e)}>
+            {this.state.grid.cell_7 === "human" ? "X" : this.state.grid.cell_7 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_8", e)}>
+            {this.state.grid.cell_8 === "human" ? "X" : this.state.grid.cell_8 === "ai" ? "O" : null}
+          </Cell>
+          <Cell onPress={(e) => this.cellClicked("cell_9", e)}>
+            {this.state.grid.cell_9 === "human" ? "X" : this.state.grid.cell_9 === "ai" ? "O" : null}
+          </Cell>
         </div>
       </div>
     );
