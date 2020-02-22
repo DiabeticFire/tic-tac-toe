@@ -30,36 +30,41 @@ class Game extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.setState({ activePlayer: randBoolean() ? "human" : "ai" }, () => console.log(this.state.activePlayer));
-  }
 
-  cellClicked(cellID) {
-    console.log("cellClicked");
+    // debuging
+    // this.setState({ activePlayer: "human" }, () => {
+    //   console.log("ready");
+    //   console.log(this.state);
+    // });
+  };
 
+  cellClicked = (cellID) => {
     if (this.state.activePlayer !== "human") {
       alert("please wait your turn");
     } else {
-      let state = {};
-      state[this.state.grid[cellID]] = "human";
-      this.setState(state, () => console.log(this.state.grid));
+      let tempState = this.state;
+      tempState.grid[cellID] = "human";
+      tempState.activePlayer = "ai";
+      this.setState(tempState, () => console.log(this.state.grid));
     }
-  }
+  };
 
   render() {
     return (
       <div className="game">
         <MenueBar />
         <div className="grid">
-          <Cell id="1" onClick={() => this.cellClicked("cell_1")} />
-          <Cell id="2" onClick={() => this.cellClicked("cell_2")} />
-          <Cell id="3" onClick={() => this.cellClicked("cell_3")} />
-          <Cell id="4" onClick={() => this.cellClicked("cell_4")} />
-          <Cell id="5" onClick={() => this.cellClicked("cell_5")} />
-          <Cell id="6" onClick={() => this.cellClicked("cell_6")} />
-          <Cell id="7" onClick={() => this.cellClicked("cell_7")} />
-          <Cell id="8" onClick={() => this.cellClicked("cell_8")} />
-          <Cell id="9" onClick={() => this.cellClicked("cell_9")} />
+          <Cell onPress={(e) => this.cellClicked("cell_1", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_2", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_3", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_4", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_5", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_6", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_7", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_8", e)} />
+          <Cell onPress={(e) => this.cellClicked("cell_9", e)} />
         </div>
       </div>
     );

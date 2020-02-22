@@ -2,8 +2,8 @@ import React from "react";
 
 import "./Cell.css";
 
-const Cell = () => {
-  return <div className="Cell"></div>;
+const Cell = (props) => {
+  return <button className="Cell" onClick={props.onPress} />;
 };
 
 export default Cell;
