@@ -1,9 +1,11 @@
 .grid {
   width: 80vh;
   height: 80vh;
-  border: 2px solid #eee5e9;
+  /* border: 2px solid #eee5e9; */
   margin: 7vh auto;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
+  gap: 2vh;
+  background-color: #eee5e9;
 }
