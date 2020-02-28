@@ -37,6 +37,21 @@ class Board extends Component {
     else return false;
   };
 
+  lines = () => {
+    const lines = [
+      [this.state.grid.cell_1, this.state.grid.cell_2, this.state.grid.cell_3],
+      [this.state.grid.cell_4, this.state.grid.cell_5, this.state.grid.cell_6],
+      [this.state.grid.cell_7, this.state.grid.cell_8, this.state.grid.cell_9],
+      [this.state.grid.cell_1, this.state.grid.cell_4, this.state.grid.cell_7],
+      [this.state.grid.cell_2, this.state.grid.cell_5, this.state.grid.cell_8],
+      [this.state.grid.cell_3, this.state.grid.cell_6, this.state.grid.cell_9],
+      [this.state.grid.cell_1, this.state.grid.cell_5, this.state.grid.cell_9],
+      [this.state.grid.cell_3, this.state.grid.cell_5, this.state.grid.cell_7]
+    ];
+
+    return lines;
+  };
+
   cellClicked = (cellID) => {
     if (this.state.activePlayer !== "human") {
       alert("please wait your turn");
@@ -54,28 +69,53 @@ class Board extends Component {
     }
   };
 
-  ai = (difficulty = this.props.difficulty) => {
+  ai = (difficulty = Number(this.props.difficulty)) => {
     let choice = null;
+    const lines = this.lines();
 
-    if (difficulty === "hard") {
+    let tempCounter = 0;
+    const options = Object.values(this.state.grid)
+      .map((cell) => {
+        tempCounter++;
+        if (cell === null) return tempCounter;
+        else return undefined;
+      })
+      .filter((e) => e !== undefined);
+
+    if (difficulty >= 3) {
       // set up wins
     }
 
-    if (difficulty === "medium") {
+    if (difficulty >= 2) {
       // block human && secure wins
+      console.log(lines);
+
+      lines.forEach((line) => {
+        let humanNum = 0;
+        let aiNum = 0;
+        let nullNum = 0;
+
+        line.forEach((cell) => {
+          if (cell === "human") humanNum++;
+          if (cell === "ai") aiNum++;
+          if (cell === null) nullNum++;
+        });
+
+        if (nullNum === 1) {
+          if (aiNum === 2) {
+            // win the game
+            console.log(line);
+          }
+          if (humanNum === 2) {
+            // block win
+            console.log(line);
+          }
+        }
+      });
     }
 
-    if (difficulty === "easy") {
+    if (difficulty >= 1) {
       // choose at random
-      let tempCounter = 0;
-      let options = Object.values(this.state.grid)
-        .map((cell) => {
-          tempCounter += 1;
-          if (cell === null) return tempCounter;
-          else return undefined;
-        })
-        .filter((e) => e !== undefined);
-
       choice = options[Math.floor(Math.random() * options.length)];
     }
 
