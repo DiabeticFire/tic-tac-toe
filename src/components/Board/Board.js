@@ -54,7 +54,7 @@ class Board extends Component {
     }
   };
 
-  ai = (difficulty = "easy") => {
+  ai = (difficulty = this.props.difficulty) => {
     let choice = null;
 
     if (difficulty === "hard") {
@@ -67,7 +67,16 @@ class Board extends Component {
 
     if (difficulty === "easy") {
       // choose at random
-      choice = Math.ceil(Math.random() * 9);
+      let tempCounter = 0;
+      let options = Object.values(this.state.grid)
+        .map((cell) => {
+          tempCounter += 1;
+          if (cell === null) return tempCounter;
+          else return undefined;
+        })
+        .filter((e) => e !== undefined);
+
+      choice = options[Math.floor(Math.random() * options.length)];
     }
 
     let tempState = this.state;

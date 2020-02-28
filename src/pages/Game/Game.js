@@ -12,7 +12,7 @@ class Game extends Component {
     return (
       <div className="game">
         <MenueBar />
-        <Board difficulty="hard"/>
+        <Board difficulty="easy" />
       </div>
     );
   }
