@@ -47,6 +47,8 @@ class Board extends Component {
       [this.state.grid.cell_3, this.state.grid.cell_5, this.state.grid.cell_7],
     ];
 
+    console.log(lines);
+
     return lines;
   };
 
@@ -69,8 +71,7 @@ class Board extends Component {
   };
 
   ai = () => {
-    const lines = this.getLines();
-    let choice = ai(this.props.difficulty, this.state.grid);
+    let choice = ai(this.props.difficulty, this.state.grid, this.getLines());
 
     let tempState = this.state;
     tempState.grid['cell_' + choice] = 'ai';
