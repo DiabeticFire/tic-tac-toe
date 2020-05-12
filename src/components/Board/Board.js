@@ -36,16 +36,48 @@ class Board extends Component {
   };
 
   getLines = () => {
-    const lines = [
-      [this.state.grid.cell_1, this.state.grid.cell_2, this.state.grid.cell_3],
-      [this.state.grid.cell_4, this.state.grid.cell_5, this.state.grid.cell_6],
-      [this.state.grid.cell_7, this.state.grid.cell_8, this.state.grid.cell_9],
-      [this.state.grid.cell_1, this.state.grid.cell_4, this.state.grid.cell_7],
-      [this.state.grid.cell_2, this.state.grid.cell_5, this.state.grid.cell_8],
-      [this.state.grid.cell_3, this.state.grid.cell_6, this.state.grid.cell_9],
-      [this.state.grid.cell_1, this.state.grid.cell_5, this.state.grid.cell_9],
-      [this.state.grid.cell_3, this.state.grid.cell_5, this.state.grid.cell_7],
-    ];
+    const lines = {
+      line1: {
+        1: this.state.grid.cell_1,
+        2: this.state.grid.cell_2,
+        3: this.state.grid.cell_3,
+      },
+      line2: {
+        4: this.state.grid.cell_4,
+        5: this.state.grid.cell_5,
+        6: this.state.grid.cell_6,
+      },
+      line3: {
+        7: this.state.grid.cell_7,
+        8: this.state.grid.cell_8,
+        9: this.state.grid.cell_9,
+      },
+      line4: {
+        1: this.state.grid.cell_1,
+        4: this.state.grid.cell_4,
+        7: this.state.grid.cell_7,
+      },
+      line5: {
+        2: this.state.grid.cell_2,
+        5: this.state.grid.cell_5,
+        8: this.state.grid.cell_8,
+      },
+      line6: {
+        3: this.state.grid.cell_3,
+        6: this.state.grid.cell_6,
+        9: this.state.grid.cell_9,
+      },
+      line7: {
+        1: this.state.grid.cell_1,
+        5: this.state.grid.cell_5,
+        9: this.state.grid.cell_9,
+      },
+      line8: {
+        3: this.state.grid.cell_3,
+        5: this.state.grid.cell_5,
+        7: this.state.grid.cell_7,
+      },
+    };
 
     console.log(lines);
 
@@ -72,6 +104,7 @@ class Board extends Component {
 
   ai = () => {
     let choice = ai(this.props.difficulty, this.state.grid, this.getLines());
+    console.log('ai choice: ' + choice);
 
     let tempState = this.state;
     tempState.grid['cell_' + choice] = 'ai';

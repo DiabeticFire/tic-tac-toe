@@ -1,25 +1,31 @@
 import easy from './easy.js';
 
 const medium = (options, lines) => {
-  lines.forEach((line) => {
+  let aiWin = [];
+  let aiLose = [];
+
+  for (const line in lines) {
     let humanCount = 0;
     let aiCount = 0;
+    let empty = '';
 
-    line.forEach((cell) => {
-      if (cell === 'human') humanCount++;
-      if (cell === 'ai') aiCount++;
-    });
-
-    console.log('human: ' + humanCount);
-    console.log('ai: ' + aiCount);
-
-    if (humanCount == 2 && aiCount == 0) {
-      console.log('I AM HERE');
-      console.log(line);
-      return line[line.indexOf(null)];
+    for (const cell in lines[line]) {
+      if (lines[line][cell] === 'human') humanCount++;
+      if (lines[line][cell] === 'ai') aiCount++;
+      if (lines[line][cell] === null) empty = cell;
     }
-    if (aiCount == 2 && humanCount == 0) return line[line.indexOf(null)];
-  });
+
+    if (humanCount === 2 && aiCount === 0) {
+      aiLose.push(empty);
+    }
+
+    if (aiCount === 2 && humanCount === 0) {
+      aiWin.push(empty);
+    }
+  }
+
+  if (aiLose.length > 0) options = aiLose;
+  if (aiWin.length > 0) options = aiWin;
 
   return easy(options);
 };
