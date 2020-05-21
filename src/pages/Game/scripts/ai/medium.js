@@ -1,6 +1,7 @@
 import easy from './easy.js';
+import hard from './hard.js';
 
-const medium = (options, lines) => {
+const medium = (options, lines, actuallyHard = false) => {
   let aiWin = [];
   let aiLose = [];
 
@@ -24,8 +25,10 @@ const medium = (options, lines) => {
     }
   }
 
-  if (aiLose.length > 0) options = aiLose;
-  if (aiWin.length > 0) options = aiWin;
+  if (aiLose.length > 0) options = aiLose[Math.floor(Math.random() * aiLose.length)];
+  if (aiWin.length > 0) options = aiWin[Math.floor(Math.random() * aiWin.length)];
+
+  if (actuallyHard) hard(options, lines);
 
   return easy(options);
 };

@@ -1,4 +1,3 @@
-import hard from './hard.js';
 import medium from './medium.js';
 import easy from './easy.js';
 
@@ -13,8 +12,8 @@ const ai = (difficulty, grid, lines) => {
     }
   }
 
-  if (difficulty === 'hard') return hard(options);
-  if (difficulty === 'medium') return medium(options, lines);
+  if (difficulty === 'hard') return medium(options, lines, true);
+  if (difficulty === 'medium') return medium(options, lines, false);
   if (difficulty === 'easy') return easy(options);
 };
 

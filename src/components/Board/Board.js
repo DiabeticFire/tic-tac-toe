@@ -79,8 +79,6 @@ class Board extends Component {
       },
     };
 
-    console.log(lines);
-
     return lines;
   };
 
@@ -96,7 +94,6 @@ class Board extends Component {
         tempState.activePlayer = 'ai';
         this.setState(tempState, () => {
           this.ai();
-          console.log('Current Player: ' + this.state.activePlayer);
         });
       }
     }
@@ -109,9 +106,7 @@ class Board extends Component {
     let tempState = this.state;
     tempState.grid['cell_' + choice] = 'ai';
     tempState.activePlayer = 'human';
-    this.setState(tempState, () => {
-      console.log('Current Player: ' + this.state.activePlayer);
-    });
+    this.setState(tempState, () => {});
   };
   // ai = (difficulty = Number(this.props.difficulty)) => {
   //   let choice = null;
