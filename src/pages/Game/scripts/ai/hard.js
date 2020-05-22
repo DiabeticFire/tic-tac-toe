@@ -1,3 +1,5 @@
+import intersects from '../intersects.js';
+
 const hard = (options, lines) => {
   let possibleLines = {};
 
@@ -18,8 +20,7 @@ const hard = (options, lines) => {
 
   for (const line in possibleLines) {
     for (const otherLine in possibleLines) {
-      if (line !== otherLine) {
-        // make sure both lines intersect
+      if (line !== otherLine && intersects(lines[line], lines[otherLine])) {
         let tempPotential = 0;
         let tempUnoccupiedCells = [];
 
@@ -34,7 +35,6 @@ const hard = (options, lines) => {
         }
 
         if (tempPotential > potential) {
-          console.log('1');
           potential = tempPotential;
           unoccupiedCells = [];
         }
