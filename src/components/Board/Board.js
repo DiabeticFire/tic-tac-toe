@@ -93,7 +93,7 @@ class Board extends Component {
         tempState.grid[cellID] = 'human';
         tempState.activePlayer = 'ai';
         this.setState(tempState, () => {
-          this.ai();
+          if (!this.checkEnd(this.getLines())) this.ai();
         });
       }
     }
@@ -101,70 +101,35 @@ class Board extends Component {
 
   ai = () => {
     let choice = ai(this.props.difficulty, this.state.grid, this.getLines());
-    console.log('ai choice: ' + choice);
 
     let tempState = this.state;
     tempState.grid['cell_' + choice] = 'ai';
     tempState.activePlayer = 'human';
-    this.setState(tempState, () => {});
+    this.setState(tempState, () => {
+      this.checkEnd(this.getLines());
+    });
   };
-  // ai = (difficulty = Number(this.props.difficulty)) => {
-  //   let choice = null;
-  //   const lines = this.lines();
 
-  //   let tempCounter = 0;
-  //   const options = Object.values(this.state.grid)
-  //     .map((cell) => {
-  //       tempCounter++;
-  //       if (cell === null) return tempCounter;
-  //       else return undefined;
-  //     })
-  //     .filter((e) => e !== undefined);
+  checkEnd = (lines) => {
+    for (let line in lines) {
+      let humanCount = 0;
+      let aiCount = 0;
 
-  //   if (difficulty === 'hard') {
-  //     // set up wins
-  //   }
+      for (let cell in lines[line]) {
+        if (lines[line][cell] === 'human') humanCount++;
+        if (lines[line][cell] === 'ai') aiCount++;
+      }
 
-  //   if (difficulty === 'medium') {
-  //     // block human && secure wins
-  //     console.log(lines);
+      if (humanCount === 3) this.gameOver('human');
+      if (aiCount === 3) this.gameOver('ai');
 
-  //     lines.forEach((line) => {
-  //       let humanNum = 0;
-  //       let aiNum = 0;
-  //       let nullNum = 0;
+      return false;
+    }
+  };
 
-  //       line.forEach((cell) => {
-  //         if (cell === 'human') humanNum++;
-  //         if (cell === 'ai') aiNum++;
-  //         if (cell === null) nullNum++;
-  //       });
-
-  //       if (nullNum === 1) {
-  //         if (aiNum === 2) {
-  //           // win the game
-  //           console.log(line);
-  //         }
-  //         if (humanNum === 2) {
-  //           // block win
-  //           console.log(line);
-  //         }
-  //       }
-  //     });
-  //   }
-
-  //   if (difficulty === 'easy') {
-  //     // choose at random
-  //     choice = options[Math.floor(Math.random() * options.length)];
-  //   }
-
-  //   let tempState = this.state;
-  //   tempState.grid['cell_' + choice] = 'ai';
-  //   tempState.activePlayer = 'human';
-  //   this.setState(tempState, () => {
-  //     // callback
-  //   });
-  // };
+  gameOver = (winner) => {
+    console.log(winner + ' wins!');
+  };
 
   render() {
     return (
